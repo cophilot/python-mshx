@@ -1,0 +1,10 @@
+#!/bin/bash
+#??Python-Universal is an alias for the python command or python3 command.
+#&&python,mshx
+
+python_command="python"
+if command -v python3 &> /dev/null; then
+    python_command="python3"
+fi
+
+$python_command $*

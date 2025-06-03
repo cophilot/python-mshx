@@ -1,0 +1,24 @@
+#!/bin/bash
+#??PIp Installer - Install packages using pip.
+#&&python,mshx
+###This script installs Python packages from the requirements.txt file 
+###or installs a specific package if provided as an argument and updates the requirements file.
+### Usage: pii [package_name]
+
+r_file="requirements.txt"
+
+pkg_to_install="$1"
+if [ -z "$pkg_to_install" ]; then
+    if [ -f "$r_file" ]; then
+        echo "Installing packages from $r_file"
+        pip-u install -r "$r_file" $*
+    else
+        echo "No $r_file file found. Creating a new one."
+        touch "$r_file"
+    fi
+    exit 0
+fi
+
+pip-u install "$pkg_to_install" $*
+pip-u freeze > "$r_file"
+echo "Package '$pkg_to_install' installed and $r_file updated."

@@ -1,0 +1,22 @@
+#!/bin/bash
+#??Initiate a python virtual environment for the current project (.venv).
+#&&python,mshx
+
+if [ -d ".venv" ]; then
+    echo "Virtual environment '.venv' already exists."
+    exit 0
+fi
+
+python-u -m venv .venv
+
+source .venv/bin/activate
+
+if [ -f requirements.txt ]; then
+    echo "Installing requirements from requirements.txt"
+    pii
+fi
+
+echo "Virtual environment '.venv' created."
+echo "Run"
+echo "source .venv/bin/activate"
+echo "to activate the virtual environment."

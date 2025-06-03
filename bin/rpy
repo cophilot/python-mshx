@@ -1,0 +1,41 @@
+#!/bin/bash
+#??Run python script in current directory
+#&&python,mshx
+###Usage: rpy [file.py] [args]
+### If no file is specified, it will run run.py or main.py if they exist.
+
+files=$(ls -l | awk '{print $9}')
+python_files=$(ls -l | awk '{print $9}' | grep ".py$")
+
+# check if there is no python file
+if [ $(echo $python_files | wc -w) -eq 0 ]; then
+    echo "There is no python file in the current directory!"
+    exit 1
+fi
+
+if [ $(echo $python_files | wc -w) -gt 1 ]; then
+    # check if run.py exists
+    if [ -f "run.py" ]; then
+        python_files="run.py"
+    elif [ -f "main.py" ]; then
+        python_files="main.py"
+    elif [ ! -z $1 ]; then
+        python_files="$1"
+        # add .py to the file if it does not have it
+        if [ $(echo $python_files | grep ".py$" | wc -w) -eq 0 ]; then
+            python_files="$python_files.py"
+        fi
+    else
+        echo "There are multiple python files in the current directory!"
+        echo "Please specify the python file you want to run!"
+        echo "The python files are:"
+        echo $python_files
+        exit 1
+    fi
+fi
+
+python_file=$(echo $python_files | awk '{print $1}')
+
+
+echo "Running Python script: $python_file"
+python-u $python_file $*

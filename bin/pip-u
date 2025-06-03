@@ -1,0 +1,10 @@
+#!/bin/bash
+#??Pip-Universal is an alias for the pip command or pip3 command.
+#&&python,mshx
+
+pip_command="pip"
+if command -v pip3 &> /dev/null; then
+    pip_command="pip3"
+fi
+
+$pip_command $*

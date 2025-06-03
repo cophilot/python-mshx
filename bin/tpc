@@ -1,0 +1,25 @@
+#!/bin/bash
+#??Generate a temp python script from clipboard content and run it
+#&&python,mshx
+
+file="__tmp.py"
+
+if [ -f $file ]; then
+    read -r -p "File $file already exists. Do you want to overwrite it? (y/n): " response
+    if [[ ! "$response" =~ ^[Yy]$ ]]; then
+        echo "Exiting..."
+        exit 1
+    fi
+    rm $file
+fi 
+
+if [ ! -f $file ]; then
+    touch $file
+    if ! command -v xclip &> /dev/null; then
+        echo "xclip is not installed. Installing it now..."
+        upsi xclip 
+    fi
+    xclip -selection clipboard -o > $file
+fi
+
+python-u $file $@
