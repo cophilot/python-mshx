@@ -1,0 +1,5 @@
+#!/bin/bash
+#??Pip-Break-System-Packages runs pip with the --break-system-packages option.
+#&&python,mshx
+
+pip-u $* --break-system-packages
