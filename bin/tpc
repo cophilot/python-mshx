@@ -22,4 +22,4 @@ if [ ! -f $file ]; then
     xclip -selection clipboard -o > $file
 fi
 
-python-u $file $@
+pyu $file $@

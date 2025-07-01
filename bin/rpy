@@ -19,6 +19,8 @@ if [ $(echo $python_files | wc -w) -gt 1 ]; then
         python_files="run.py"
     elif [ -f "main.py" ]; then
         python_files="main.py"
+    elif [ -f "app.py" ]; then
+        python_files="app.py"
     elif [ ! -z $1 ]; then
         python_files="$1"
         # add .py to the file if it does not have it
@@ -36,6 +38,5 @@ fi
 
 python_file=$(echo $python_files | awk '{print $1}')
 
-
 echo "Running Python script: $python_file"
-python-u $python_file $*
+pyu $python_file $*

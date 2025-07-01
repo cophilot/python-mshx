@@ -7,7 +7,7 @@ if [ -d ".venv" ]; then
     exit 0
 fi
 
-python-u -m venv .venv
+pyu -m venv .venv
 
 source .venv/bin/activate
 

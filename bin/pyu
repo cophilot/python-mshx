@@ -1,0 +1,20 @@
+#!/bin/bash
+#??PYthon-Universal is an alias for the python command or python3 command. Will install Python3 if it is not found.
+#&&python,mshx
+
+python_command="python"
+if command -v python3 &> /dev/null; then
+    python_command="python3"
+elif ! command -v python &> /dev/null; then
+    
+    echo "No Python interpreter found."
+    read -p "Do you want to install Python3? (y/N): " install_choice
+
+    if [[ $install_choice == "y" || $install_choice == "Y" || $install_choice == "yes" ]]; then
+        upsi python3
+    else
+        exit 1
+    fi
+fi
+
+$python_command $*
