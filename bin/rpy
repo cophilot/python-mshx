@@ -5,7 +5,7 @@
 ### If no file is specified, it will run run.py or main.py if they exist.
 
 files=$(ls -l | awk '{print $9}')
-python_files=$(ls -l | awk '{print $9}' | grep ".py$")
+python_files=$(ls *.py 2>/dev/null)
 
 # check if there is no python file
 if [ $(echo $python_files | wc -w) -eq 0 ]; then
